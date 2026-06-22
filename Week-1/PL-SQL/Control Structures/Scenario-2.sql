@@ -1,0 +1,12 @@
+DECLARE CURSOR c1 IS SELECT CUSTOMERID,BALANCE FROM CUSTOMERS;
+BEGIN
+    FOR rec in c1 LOOP
+        IF rec.BALANCE > 10000 THEN
+            UPDATE CUSTOMERS
+            SET ISVIP = TRUE
+            WHERE CustomerID = rec.CustomerID;
+        END IF;
+    END LOOP;
+    COMMIT;
+END;
+/
